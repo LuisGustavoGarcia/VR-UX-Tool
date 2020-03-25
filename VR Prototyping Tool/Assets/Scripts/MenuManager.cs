@@ -5,75 +5,72 @@ using Valve.VR.InteractionSystem;
 
 public class MenuManager : MonoBehaviour
 {
-    public Canvas mainMenuCanvas;
-    public Canvas modifyMenuCanvas;
-    public Canvas addInteractionCanvas;
-    public Canvas chooseActionCanvas;
-    public Canvas deleteConfirmationCanvas;
-    public Canvas duplicationConfirmationCanvas;
-    public GameObject scalingSpheres;
+    public GameObject mainMenuCanvas;
+    public GameObject modifyMenuCanvas;
+    public GameObject addInteractionCanvas;
+    public GameObject chooseActionCanvas;
+    public GameObject deleteConfirmationCanvas;
+    public GameObject duplicationConfirmationCanvas;
 
     // Start is called before the first frame update
     void Start()
     {
         HideMenus();
-        HideScalingSpheres();
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnHandHoverBegin(Hand hand)
     {
-        if (other.transform.GetComponent<Hand>() == null
-            || modifyMenuCanvas.enabled == true
-            || addInteractionCanvas.enabled == true)
+        Debug.Log("Hand hovered over cube.");
+        if (modifyMenuCanvas.activeSelf == true || addInteractionCanvas.activeSelf == true)
             return;
 
-        mainMenuCanvas.enabled = true;
+        Debug.Log("Enabled main canvas.");
+        mainMenuCanvas.SetActive(true);
     }
 
-    public void OnTriggerExit(Collider other)
+    public void OnHandHoverEnd(Hand hand)
     {
         HideMenus();
     }
 
     public void HideMenus()
     {
-        mainMenuCanvas.enabled = false;
-        modifyMenuCanvas.enabled = false;
-        addInteractionCanvas.enabled = false;
-        chooseActionCanvas.enabled = false;
-        deleteConfirmationCanvas.enabled = false;
-        duplicationConfirmationCanvas.enabled = false;
-        scalingSpheres.SetActive(false);
+        mainMenuCanvas.SetActive(false);
+        modifyMenuCanvas.SetActive(false);
+        addInteractionCanvas.SetActive(false);
+        chooseActionCanvas.SetActive(false);
+        deleteConfirmationCanvas.SetActive(false);
+        duplicationConfirmationCanvas.SetActive(false);
     }
 
     public void ShowModifyCanvas()
     {
         HideMenus();
-        modifyMenuCanvas.enabled = true;
+        modifyMenuCanvas.SetActive(true);
     }
 
     public void ShowAddInteractionCanvas()
     {
         HideMenus();
-        addInteractionCanvas.enabled = false;
+        addInteractionCanvas.SetActive(false);
     }
 
     public void ShowChooseActionCanvas()
     {
         HideMenus();
-        chooseActionCanvas.enabled = true;
+        chooseActionCanvas.SetActive(true);
     }
 
     public void ShowDeleteConfirmationCanvas()
     {
         HideMenus();
-        deleteConfirmationCanvas.enabled = true;
+        deleteConfirmationCanvas.SetActive(true);
     }
 
     public void ShowDuplicationConfirmationCanvas()
     {
         HideMenus();
-        duplicationConfirmationCanvas.enabled = true;
+        duplicationConfirmationCanvas.SetActive(true);
     }
 
     public void DestroyGameObjectObject()
@@ -85,15 +82,5 @@ public class MenuManager : MonoBehaviour
     {
         Vector3 newPosition = transform.position + new Vector3(0f, 0.1f, 0f);
         Instantiate(this, newPosition, transform.rotation, null);
-    }
-
-    public void HideScalingSpheres()
-    {
-        scalingSpheres.SetActive(false);
-    }
-
-    public void ShowScalingSpheres()
-    {
-        scalingSpheres.SetActive(true);
     }
 }

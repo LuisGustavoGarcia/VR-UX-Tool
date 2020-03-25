@@ -819,10 +819,10 @@ GameObject:
   - component: {fileID: 235613385}
   - component: {fileID: 235613384}
   - component: {fileID: 235613389}
-  - component: {fileID: 235613388}
   - component: {fileID: 235613392}
   - component: {fileID: 235613391}
   - component: {fileID: 235613393}
+  - component: {fileID: 235613388}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -921,13 +921,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95550f1ae25e39459790b745620270f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuCanvas: {fileID: 1865940206}
-  modifyMenuCanvas: {fileID: 1906006586}
-  addInteractionCanvas: {fileID: 1510335754}
-  chooseActionCanvas: {fileID: 1101911731}
-  deleteConfirmationCanvas: {fileID: 676560912}
-  duplicationConfirmationCanvas: {fileID: 1676307247}
-  scalingSpheres: {fileID: 0}
+  mainMenuCanvas: {fileID: 1865940203}
+  modifyMenuCanvas: {fileID: 1906006582}
+  addInteractionCanvas: {fileID: 1510335750}
+  chooseActionCanvas: {fileID: 1101911727}
+  deleteConfirmationCanvas: {fileID: 676560908}
+  duplicationConfirmationCanvas: {fileID: 1676307243}
 --- !u!54 &235613389
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3189,7 +3188,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.x
