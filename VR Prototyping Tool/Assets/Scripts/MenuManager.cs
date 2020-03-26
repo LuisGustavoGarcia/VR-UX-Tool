@@ -7,29 +7,50 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject mainMenuCanvas;
     public GameObject modifyMenuCanvas;
+    public GameObject modifyMaterialCanvas;
     public GameObject addInteractionCanvas;
     public GameObject chooseActionCanvas;
     public GameObject deleteConfirmationCanvas;
     public GameObject duplicationConfirmationCanvas;
 
+    private bool attachedToHand;
+
     // Start is called before the first frame update
     void Start()
     {
+        attachedToHand = false;
         HideMenus();
     }
 
     public void OnHandHoverBegin(Hand hand)
     {
-        Debug.Log("Hand hovered over cube.");
+        if (attachedToHand || modifyMenuCanvas.activeSelf == true || addInteractionCanvas.activeSelf == true)
+            return;
+        
+        mainMenuCanvas.SetActive(true);
+    }
+
+    public void OnAttachedToHand(Hand hand)
+    {
+        attachedToHand = true;
+        
         if (modifyMenuCanvas.activeSelf == true || addInteractionCanvas.activeSelf == true)
             return;
-
-        Debug.Log("Enabled main canvas.");
+        
         mainMenuCanvas.SetActive(true);
+    }
+
+    public void OnDetachedFromHand(Hand hand)
+    {
+        attachedToHand = false;
+        HideMenus();
     }
 
     public void OnHandHoverEnd(Hand hand)
     {
+        if (attachedToHand)
+            return;
+
         HideMenus();
     }
 
@@ -37,6 +58,7 @@ public class MenuManager : MonoBehaviour
     {
         mainMenuCanvas.SetActive(false);
         modifyMenuCanvas.SetActive(false);
+        modifyMaterialCanvas.SetActive(false);
         addInteractionCanvas.SetActive(false);
         chooseActionCanvas.SetActive(false);
         deleteConfirmationCanvas.SetActive(false);
@@ -71,6 +93,12 @@ public class MenuManager : MonoBehaviour
     {
         HideMenus();
         duplicationConfirmationCanvas.SetActive(true);
+    }
+
+    public void ShowModifyMaterialCanvas()
+    {
+        HideMenus();
+        modifyMaterialCanvas.SetActive(true);
     }
 
     public void DestroyGameObjectObject()
